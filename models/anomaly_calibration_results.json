@@ -1,0 +1,47 @@
+{
+  "thresholds": {
+    "1": -0.0413953206445913,
+    "2": -0.024708094367893074,
+    "5": -0.00737421282183176
+  },
+  "evaluation_results": [
+    {
+      "threshold": -0.0413953206445913,
+      "true_alerts": 32,
+      "missed_alerts": 1,
+      "extra_alerts": 7,
+      "correct_non_urgent": 60,
+      "total_urgent": 33,
+      "total_alerts": 39,
+      "precision": 0.8205128205128205,
+      "recall": 0.9696969696969697,
+      "f1": 0.8888888888888888
+    },
+    {
+      "threshold": -0.024708094367893074,
+      "true_alerts": 32,
+      "missed_alerts": 1,
+      "extra_alerts": 11,
+      "correct_non_urgent": 56,
+      "total_urgent": 33,
+      "total_alerts": 43,
+      "precision": 0.7441860465116279,
+      "recall": 0.9696969696969697,
+      "f1": 0.8421052631578948
+    },
+    {
+      "threshold": -0.00737421282183176,
+      "true_alerts": 32,
+      "missed_alerts": 1,
+      "extra_alerts": 14,
+      "correct_non_urgent": 53,
+      "total_urgent": 33,
+      "total_alerts": 46,
+      "precision": 0.6956521739130435,
+      "recall": 0.9696969696969697,
+      "f1": 0.810126582278481
+    }
+  ],
+  "recommended_threshold": -0.0413953206445913,
+  "percentile_used": 1
+}

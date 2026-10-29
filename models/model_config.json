@@ -1,0 +1,115 @@
+{
+  "model_info": {
+    "project": "Jet Engine Digital Twin for Predictive Maintenance",
+    "dataset": "NASA CMAPSS FD001",
+    "description": "A digital twin system combining RUL prediction and anomaly detection for turbofan engines"
+  },
+  "rul_model": {
+    "type": "RandomForestRegressor",
+    "filename": "rul_random_forest.pkl",
+    "parameters": {
+      "n_estimators": 100,
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "target": "RUL_capped",
+    "features": 14,
+    "feature_names": [
+      "sensor_2", "sensor_3", "sensor_4", "sensor_7", "sensor_8", "sensor_9",
+      "sensor_11", "sensor_12", "sensor_13", "sensor_14", "sensor_15", "sensor_17",
+      "sensor_20", "sensor_21"
+    ],
+    "metrics": {
+      "official_test_mae": 11.7218,
+      "official_test_rmse": 16.568921087385263,
+      "evaluation_set": "NASA FD001 official test set (100 engines)"
+    },
+    "rul_cap": 125,
+    "description": "Predicts remaining useful life for turbofan engines based on 14 selected sensor features"
+  },
+  "anomaly_model": {
+    "type": "IsolationForest",
+    "filename": "anomaly_isolation_forest.pkl",
+    "parameters": {
+      "n_estimators": 100,
+      "contamination": "auto",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "training_region": "RUL_capped == 125 (healthy engines)",
+    "training_samples": 8131,
+    "features": 14,
+    "feature_names": [
+      "sensor_2", "sensor_3", "sensor_4", "sensor_7", "sensor_8", "sensor_9",
+      "sensor_11", "sensor_12", "sensor_13", "sensor_14", "sensor_15", "sensor_17",
+      "sensor_20", "sensor_21"
+    ],
+    "description": "Detects sensor anomalies by identifying deviations from healthy engine behavior"
+  },
+  "anomaly_detection": {
+    "threshold_method": "Percentile-based calibration",
+    "threshold_value": -0.0413953206,
+    "threshold_percentile": 1,
+    "threshold_basis": "1st percentile of healthy training data anomaly scores",
+    "anomaly_score_statistics": {
+      "healthy_data_min": -0.1073716036,
+      "healthy_data_1st_percentile": -0.0413953206,
+      "healthy_data_median": 0.0600226747,
+      "healthy_data_max": 0.1278061608
+    },
+    "severity_thresholds": {
+      "NORMAL": 0.06,
+      "SUSPICIOUS": -0.006,
+      "ANOMALOUS": -0.043
+    },
+    "calibration_results": {
+      "true_alerts": 32,
+      "missed_alerts": 1,
+      "extra_alerts": 7,
+      "correct_non_urgent": 60,
+      "precision": 0.8205,
+      "recall": 0.9697,
+      "f1_score": 0.8889,
+      "test_set": "100 official test engines"
+    }
+  },
+  "health_state_thresholds": {
+    "HEALTHY": "> 80 cycles RUL",
+    "MODERATE": "50-80 cycles RUL",
+    "WARNING": "20-50 cycles RUL",
+    "CRITICAL": "< 20 cycles RUL"
+  },
+  "data": {
+    "dataset": "NASA Commercial Modular Aero-Propulsion System Simulation (C-MAPSS)",
+    "subset": "FD001 (1 failure mode)",
+    "training_engines": 100,
+    "training_samples": 20631,
+    "test_engines": 100,
+    "test_samples": 13096,
+    "sensors_total": 21,
+    "sensors_selected": 14,
+    "excluded_sensors": [1, 5, 6, 10, 16, 18, 19],
+    "reason_excluded": "Low variance/non-informative"
+  },
+  "digital_twin": {
+    "fusion_method": "Decision-level fusion",
+    "inputs": [
+      "Predicted RUL",
+      "Health state",
+      "Anomaly severity"
+    ],
+    "outputs": [
+      "Overall status",
+      "Maintenance recommendation"
+    ],
+    "description": "Combines RUL prediction with anomaly detection to provide comprehensive engine health assessment"
+  },
+  "important_sensors": [
+    "sensor_11",
+    "sensor_9",
+    "sensor_4",
+    "sensor_7",
+    "sensor_12"
+  ],
+  "disclaimer": "This is an educational/research prototype. It is not an aviation-certified maintenance system and should not be used for actual operational maintenance decisions without proper validation by aviation authorities."
+}

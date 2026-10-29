@@ -1,0 +1,120 @@
+{
+  "sampling_rate": 40960,
+  "window_seconds": 2.0,
+  "overlap": 0.5,
+  "microphone_channel": "mic1 preferred, any verified mic channel supported",
+  "feature_names": [
+    "rms_energy",
+    "peak_amplitude",
+    "crest_factor",
+    "zero_crossing_rate",
+    "kurtosis",
+    "skewness",
+    "spectral_centroid",
+    "dominant_frequency",
+    "spectral_bandwidth",
+    "spectral_rolloff",
+    "spectral_flatness",
+    "mfcc_1_mean",
+    "mfcc_1_std",
+    "mfcc_2_mean",
+    "mfcc_2_std",
+    "mfcc_3_mean",
+    "mfcc_3_std",
+    "mfcc_4_mean",
+    "mfcc_4_std",
+    "mfcc_5_mean",
+    "mfcc_5_std",
+    "mfcc_6_mean",
+    "mfcc_6_std",
+    "mfcc_7_mean",
+    "mfcc_7_std",
+    "mfcc_8_mean",
+    "mfcc_8_std",
+    "mfcc_9_mean",
+    "mfcc_9_std",
+    "mfcc_10_mean",
+    "mfcc_10_std",
+    "mfcc_11_mean",
+    "mfcc_11_std",
+    "mfcc_12_mean",
+    "mfcc_12_std",
+    "mfcc_13_mean",
+    "mfcc_13_std"
+  ],
+  "class_names": [
+    "NORMAL",
+    "FAULTY"
+  ],
+  "model": "RandomForestClassifier",
+  "evaluation_method": "GroupKFold (4 splits) - Leave-One-Run-Out",
+  "metrics": {
+    "accuracy": {
+      "fold_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "precision": {
+      "fold_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "recall": {
+      "fold_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "f1_score": {
+      "fold_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "roc_auc": {
+      "fold_scores": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "mean": null,
+      "std": null
+    }
+  },
+  "confusion_matrix": {
+    "tn": 0,
+    "fp": 858,
+    "fn": 858,
+    "tp": 0
+  },
+  "source_model": "models/acoustic/acoustic_classifier.pkl",
+  "saved_model": "models/audio_anomaly_model.pkl",
+  "saved_scaler": "models/audio_scaler.pkl",
+  "saved_feature_names": "models/audio_feature_names.pkl",
+  "limitations": [
+    "C-MAPSS and DGEN 380 are independent datasets.",
+    "DGEN recordings are not synchronized with C-MAPSS engine IDs.",
+    "Available normal/faulty DGEN recordings differ by configuration as well as condition.",
+    "Acoustic model score/probability is not calibrated failure probability.",
+    "Only four independent labeled DGEN waveform recordings are available for group-aware evaluation."
+  ]
+}

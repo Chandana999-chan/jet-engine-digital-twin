@@ -1,0 +1,76 @@
+{
+  "dataset": "DGEN 380 - Turbofan Acoustic Monitoring",
+  "total_files": 4,
+  "classes": {
+    "normal": {
+      "label": 0,
+      "description": "Normal engine operation",
+      "count": 2,
+      "runs": [
+        "normal_1",
+        "normal_2"
+      ],
+      "configuration": 2
+    },
+    "faulty": {
+      "label": 1,
+      "description": "Faulty engine operation",
+      "count": 2,
+      "runs": [
+        "faulty_1",
+        "faulty_2"
+      ],
+      "configuration": 4
+    }
+  },
+  "critical_caveat": {
+    "issue": "Configuration Confounding Variable",
+    "severity": "HIGH",
+    "description": "Normal and faulty data come from DIFFERENT engine configurations (2 vs 4). Any classifier may learn configuration differences rather than true fault detection.",
+    "implication": "Reported accuracy metrics may not generalize to other configurations.",
+    "mitigation": "Use group-aware evaluation (GroupKFold) with run_id as group to prevent data leakage.",
+    "recommendations": [
+      "Always report accuracy WITH THIS CAVEAT",
+      "Use group-aware cross-validation",
+      "Never mix runs from same configuration in train/test",
+      "Consider configuration as a confounding variable in analysis"
+    ]
+  },
+  "data_characteristics": {
+    "sampling_rate": 40960,
+    "duration_per_file": "~40.35 seconds",
+    "microphone_channels": 11,
+    "accelerometer_channels": 9,
+    "total_samples_per_file": 1654784
+  },
+  "file_mapping": {
+    "Desir_II_configuration_2_normal_1.mat": {
+      "condition": "normal",
+      "configuration": 2,
+      "run_id": "normal_1",
+      "file_id": 1,
+      "size_mb": 248
+    },
+    "Desir_II_configuration_2_normal_2.mat": {
+      "condition": "normal",
+      "configuration": 2,
+      "run_id": "normal_2",
+      "file_id": 2,
+      "size_mb": 250
+    },
+    "Desir_II_configuration_4_faulty_1.mat": {
+      "condition": "faulty",
+      "configuration": 4,
+      "run_id": "faulty_1",
+      "file_id": 3,
+      "size_mb": 249
+    },
+    "Desir_II_configuration_4_faulty_2.mat": {
+      "condition": "faulty",
+      "configuration": 4,
+      "run_id": "faulty_2",
+      "file_id": 4,
+      "size_mb": 250
+    }
+  }
+}

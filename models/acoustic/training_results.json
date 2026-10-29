@@ -1,0 +1,138 @@
+{
+  "timestamp": "2026-09-01T20:34:52.930155",
+  "dataset": "DGEN 380 Turbofan Acoustic",
+  "model_type": "RandomForestClassifier",
+  "model_params": {
+    "n_estimators": 100,
+    "max_depth": 15,
+    "min_samples_split": 5,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced"
+  },
+  "data_info": {
+    "total_samples": 1716,
+    "n_features": 37,
+    "class_distribution": {
+      "normal": 858,
+      "faulty": 858
+    },
+    "groups": "4 runs (leave-one-run-out CV)"
+  },
+  "cross_validation": {
+    "method": "GroupKFold (4 splits)",
+    "evaluation": "Leave-One-Run-Out",
+    "metrics": {
+      "accuracy": {
+        "fold_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "precision": {
+        "fold_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "recall": {
+        "fold_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "f1_score": {
+        "fold_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "roc_auc": {
+        "fold_scores": [
+          NaN,
+          NaN,
+          NaN,
+          NaN
+        ],
+        "mean": NaN,
+        "std": NaN
+      }
+    }
+  },
+  "confusion_matrix": {
+    "tn": 0,
+    "fp": 858,
+    "fn": 858,
+    "tp": 0
+  },
+  "top_features": [
+    {
+      "feature": "mfcc_5_mean",
+      "importance": 0.20666344611273693
+    },
+    {
+      "feature": "mfcc_1_mean",
+      "importance": 0.08869053184343068
+    },
+    {
+      "feature": "mfcc_13_mean",
+      "importance": 0.06523790054613682
+    },
+    {
+      "feature": "mfcc_7_mean",
+      "importance": 0.06291026421530278
+    },
+    {
+      "feature": "mfcc_6_mean",
+      "importance": 0.058030441443182576
+    },
+    {
+      "feature": "mfcc_4_mean",
+      "importance": 0.05755672135897817
+    },
+    {
+      "feature": "mfcc_11_mean",
+      "importance": 0.051638320348393954
+    },
+    {
+      "feature": "spectral_flatness",
+      "importance": 0.042470042773458734
+    },
+    {
+      "feature": "spectral_rolloff",
+      "importance": 0.040630362879223385
+    },
+    {
+      "feature": "spectral_bandwidth",
+      "importance": 0.039250580810938775
+    }
+  ],
+  "critical_caveat": {
+    "issue": "Configuration Confounding Variable",
+    "severity": "HIGH",
+    "description": "Normal and faulty data come from DIFFERENT configurations (2 vs 4)",
+    "implication": "Accuracy may reflect configuration differences rather than true fault detection",
+    "mitigation_used": "GroupKFold cross-validation prevents within-run data leakage",
+    "recommendations": [
+      "Do NOT claim this model generalizes to all configurations",
+      "Results show acoustic differences between configurations 2 and 4",
+      "For production, collect balanced data across multiple configurations",
+      "Use this as baseline for decision-level fusion only"
+    ]
+  }
+}

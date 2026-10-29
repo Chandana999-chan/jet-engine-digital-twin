@@ -1,0 +1,132 @@
+{
+  "dataset_name": "DGEN 380 Turbofan Vibroacoustic Dataset",
+  "description": "Real turbofan engine measurements including acoustic and vibration signals from two configurations under normal and faulty conditions",
+  
+  "files": {
+    "signal_files": [
+      {
+        "filename": "Desir_II_configuration_2_normal_1.mat",
+        "label": "NORMAL",
+        "configuration": 2,
+        "run_id": 1,
+        "size_mb": 247.85
+      },
+      {
+        "filename": "Desir_II_configuration_2_normal_2.mat",
+        "label": "NORMAL",
+        "configuration": 2,
+        "run_id": 2,
+        "size_mb": 249.89
+      },
+      {
+        "filename": "Desir_II_configuration_4_faulty_1.mat",
+        "label": "FAULTY",
+        "configuration": 4,
+        "run_id": 1,
+        "size_mb": 247.91
+      },
+      {
+        "filename": "Desir_II_configuration_4_faulty_2.mat",
+        "label": "FAULTY",
+        "configuration": 4,
+        "run_id": 2,
+        "size_mb": 249.96
+      }
+    ],
+    "metadata_files": [
+      "Desir_II_config_2_perfo_normal_1.mat",
+      "Desir_II_config_2_perfo_normal_2.mat",
+      "DESIR_II_config_4_perfo_faulty_1.mat",
+      "DESIR_II_config_4_perfo_faulty_2.mat"
+    ]
+  },
+  
+  "signal_characteristics": {
+    "sampling_rate": 40960,
+    "sampling_rate_unit": "Hz",
+    "total_samples_per_recording": 1654784,
+    "recording_duration_seconds": 40.35,
+    "data_type": "float64",
+    "format": "MATLAB v7.0 MAT file (scipy compatible)"
+  },
+  
+  "microphone_channels": {
+    "description": "Acoustic pressure measurements in Pascals (Pa)",
+    "channels": [
+      "mic1", "mic2", "mic3", "mic4", "mic5", "mic6", 
+      "mic7", "mic8", "mic9", "mic10", "mic11"
+    ],
+    "count": 11,
+    "selected_for_analysis": "All 11 channels"
+  },
+  
+  "accelerometer_channels": {
+    "description": "Vibration measurements in g (gravitational acceleration)",
+    "accelerometers": [
+      {
+        "name": "acc1",
+        "axes": ["X", "Y", "Z"]
+      },
+      {
+        "name": "acc2",
+        "axes": ["X", "Y", "Z"]
+      },
+      {
+        "name": "acc3",
+        "axes": ["X", "Y", "Z"]
+      }
+    ],
+    "total_channels": 9,
+    "note": "Used for vibration analysis but not included in primary acoustic model"
+  },
+  
+  "engine_parameters": {
+    "engine_speed": {
+      "variable_name": "Nfan",
+      "unit": "rpm",
+      "description": "Engine fan speed (rotational speed)"
+    },
+    "blade_pass_frequency": {
+      "variable_name": "BPF",
+      "unit": "Hz",
+      "description": "Blade Pass Frequency for engine speed monitoring"
+    }
+  },
+  
+  "metadata": {
+    "time_vector": "t",
+    "unit": "seconds",
+    "blade_tracking": "top_pale_brute and top_pale_rec",
+    "parameters_string": "Sampling frequency =40960 Hz, Nombres de mesures =1654784",
+    "unity_description": "t (s), micros (Pa), Accelerometres (g), top pale (V), Nfan (rpm), BPF (Hz)"
+  },
+  
+  "dataset_labels": {
+    "normal": [
+      "Desir_II_configuration_2_normal_1.mat",
+      "Desir_II_configuration_2_normal_2.mat"
+    ],
+    "faulty": [
+      "Desir_II_configuration_4_faulty_1.mat",
+      "Desir_II_configuration_4_faulty_2.mat"
+    ]
+  },
+  
+  "important_notes": [
+    "Configuration 2 contains normal operating data",
+    "Configuration 4 contains faulty/degraded operating data",
+    "Normal and faulty data come from different engine configurations - classifier may learn configuration differences",
+    "This must be documented as a limitation in any results",
+    "Microphone channels are the primary acoustic modality for this analysis",
+    "Accelerometer data is available but treated separately for vibration analysis",
+    "Only 2 recordings per class - generalization evaluation must use group-aware splitting"
+  ],
+  
+  "scientific_caveats": {
+    "confounding_variable": "Configuration differences (2 vs 4) may confound fault classification",
+    "limited_data": "Only 4 signal recordings total (2 normal, 2 faulty)",
+    "generalization": "Generalization performance difficult to assess with limited independent runs",
+    "recommendation": "Use group-aware evaluation (e.g., GroupKFold, LeaveOneOut) to prevent data leakage",
+    "disclaimer": "Model accuracy may partially reflect configuration differences rather than pure fault detection ability"
+  }
+}

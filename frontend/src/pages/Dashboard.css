@@ -1,0 +1,780 @@
+
+/* ============================================================
+   DASHBOARD
+   Compact glassmorphism design
+   ============================================================ */
+
+.dashboard-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 20px 22px 28px;
+  color: #e8edf7;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.dashboard-eyebrow,
+.card-header > div > span,
+.section-title > div > span,
+.chart-header > div > span,
+.acoustic-info > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #7f8da5;
+}
+
+.dashboard-header h1 {
+  margin: 5px 0 3px;
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 650;
+  letter-spacing: -0.3px;
+}
+
+.dashboard-header p {
+  margin: 0;
+  font-size: 11px;
+  color: #78859a;
+}
+
+.dashboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.update-time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #748197;
+  font-size: 10px;
+}
+
+.refresh-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #cdd5e2;
+  font-size: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.refresh-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.refresh-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.refresh-spin {
+  animation: dashboard-spin 0.8s linear infinite;
+}
+
+@keyframes dashboard-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   GLASS CARDS
+   ============================================================ */
+
+.dashboard-page .glass-card,
+.kpi-card,
+.engine-card,
+.status-card,
+.sensor-card,
+.chart-card,
+.acoustic-card {
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+
+/* ============================================================
+   KPI
+   ============================================================ */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.kpi-card {
+  min-height: 82px;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-radius: 10px;
+}
+
+.kpi-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #9eacc1;
+}
+
+.kpi-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kpi-info > span {
+  font-size: 8px;
+  letter-spacing: 0.9px;
+  font-weight: 700;
+  color: #78859a;
+}
+
+.kpi-info strong {
+  font-size: 19px;
+  line-height: 1.1;
+  font-weight: 650;
+  color: #edf2f9;
+}
+
+.kpi-info small {
+  font-size: 9px;
+  color: #727f93;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+/* ============================================================
+   STATUS COLORS
+   ============================================================ */
+
+.good {
+  color: #76cda0 !important;
+}
+
+.warning {
+  color: #d9b36b !important;
+}
+
+.danger {
+  color: #e27b82 !important;
+}
+
+.neutral {
+  color: #8b98ab !important;
+}
+
+
+/* ============================================================
+   ENGINE AREA
+   ============================================================ */
+
+.engine-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(270px, 0.85fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.engine-card,
+.status-card {
+  border-radius: 11px;
+  overflow: hidden;
+}
+
+.engine-card {
+  min-height: 365px;
+}
+
+.status-card {
+  padding: 14px;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 14px 0;
+}
+
+.status-card .card-header {
+  padding: 0;
+}
+
+.card-header h2,
+.section-title h2,
+.chart-header h2 {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #dce3ee;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 7px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #7e8ca1;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.live-badge span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #73c89a;
+  box-shadow: 0 0 7px rgba(115, 200, 154, 0.7);
+}
+
+.engine-view {
+  height: 315px;
+  margin-top: 3px;
+  position: relative;
+}
+
+
+/* ============================================================
+   ENGINE STATUS
+   ============================================================ */
+
+.health-display {
+  display: flex;
+  justify-content: center;
+  padding: 18px 0 10px;
+}
+
+.health-circle {
+  width: 128px;
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      #7188a7 var(--health),
+      rgba(255, 255, 255, 0.055) var(--health)
+    );
+  position: relative;
+}
+
+.health-circle::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: #10151e;
+}
+
+.health-circle > div {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.health-circle strong {
+  font-size: 23px;
+  font-weight: 650;
+  color: #e9eef6;
+}
+
+.health-circle span {
+  margin-top: 2px;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: #7d899c;
+}
+
+.status-label {
+  width: fit-content;
+  margin: 2px auto 13px;
+  padding: 5px 9px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.status-list {
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.status-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.status-list span {
+  font-size: 9px;
+  color: #778499;
+}
+
+.status-list strong {
+  font-size: 10px;
+  font-weight: 600;
+  color: #cbd4e2;
+}
+
+.recommendation {
+  display: flex;
+  gap: 8px;
+  margin-top: 11px;
+  padding: 9px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.032);
+  color: #91a0b5;
+}
+
+.recommendation svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.recommendation span {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  color: #738095;
+}
+
+.recommendation p {
+  margin: 3px 0 0;
+  font-size: 9px;
+  line-height: 1.4;
+  color: #adb7c6;
+}
+
+
+/* ============================================================
+   SECTION
+   ============================================================ */
+
+.section-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0 1px 9px;
+}
+
+.section-title > small {
+  font-size: 9px;
+  color: #6e7b8f;
+}
+
+.acoustic-title {
+  margin-top: 20px;
+}
+
+.acoustic-title > small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+/* ============================================================
+   SENSOR CARDS
+   ============================================================ */
+
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.sensor-card {
+  min-height: 88px;
+  padding: 11px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.sensor-card:hover {
+  transform: translateY(-1px);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 255, 255, 0.025)
+    );
+}
+
+.sensor-card.active {
+  border-color: rgba(126, 153, 188, 0.32);
+}
+
+.sensor-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7d8ba0;
+}
+
+.sensor-top svg {
+  color: #8293aa;
+}
+
+.sensor-top span {
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.sensor-card > strong {
+  display: block;
+  margin: 9px 0 3px;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 600;
+  color: #e3e9f2;
+}
+
+.sensor-card > small {
+  font-size: 7px;
+  letter-spacing: 0.5px;
+  color: #626f82;
+}
+
+
+/* ============================================================
+   CHARTS
+   ============================================================ */
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  gap: 10px;
+}
+
+.chart-card {
+  min-height: 265px;
+  padding: 13px;
+  border-radius: 10px;
+}
+
+.chart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chart-header > small {
+  font-size: 9px;
+  color: #8794a7;
+  white-space: nowrap;
+}
+
+.chart-area {
+  width: 100%;
+  height: 205px;
+  margin-top: 8px;
+}
+
+.empty-chart {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #687589;
+}
+
+
+/* ============================================================
+   TOOLTIP
+   ============================================================ */
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.recharts-default-tooltip {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 6px !important;
+  background: rgba(17, 22, 31, 0.94) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.recharts-tooltip-label {
+  color: #9ca9bc !important;
+  font-size: 9px !important;
+}
+
+.recharts-tooltip-item {
+  font-size: 9px !important;
+}
+
+
+/* ============================================================
+   ACOUSTIC
+   ============================================================ */
+
+.acoustic-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  border-radius: 10px;
+}
+
+.acoustic-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #94a2b6;
+}
+
+.acoustic-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.acoustic-info h3 {
+  margin: 3px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #dce3ed;
+}
+
+.acoustic-info p {
+  margin: 0;
+  font-size: 9px;
+  color: #727f92;
+}
+
+.acoustic-stats {
+  display: flex;
+  gap: 22px;
+  padding-right: 6px;
+}
+
+.acoustic-stats > div {
+  min-width: 70px;
+}
+
+.acoustic-stats span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 7px;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  color: #69768a;
+}
+
+.acoustic-stats strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd4e1;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.dashboard-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.dashboard-footer span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 8px;
+  color: #626f82;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.dashboard-loading {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  color: #8996aa;
+}
+
+.dashboard-loader span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dashboard-loader small {
+  font-size: 9px;
+  color: #606d80;
+}
+
+.loader-ring {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-top-color: #8495ad;
+  border-radius: 50%;
+  animation: dashboard-spin 0.8s linear infinite;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sensor-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .large-chart {
+    grid-column: 1 / -1;
+  }
+}
+
+
+@media (max-width: 850px) {
+  .dashboard-page {
+    padding: 15px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+  }
+
+  .engine-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .large-chart {
+    grid-column: auto;
+  }
+
+  .sensor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .acoustic-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .acoustic-stats {
+    width: 100%;
+    padding-left: 50px;
+  }
+}
+
+
+@media (max-width: 520px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sensor-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+

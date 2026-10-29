@@ -1,0 +1,5 @@
+file_id,filename,filepath,condition,configuration,run_id,label,size_mb,exists,sampling_rate,num_samples,duration_sec,microphone_channels,accelerometer_channels,verified
+1,Desir_II_configuration_2_normal_1.mat,data\audio\dgen380\Desir_II_configuration_2_normal_1.mat,normal,2,normal_1,0,248,True,40960.0,1654784,40.4,11,9,True
+2,Desir_II_configuration_2_normal_2.mat,data\audio\dgen380\Desir_II_configuration_2_normal_2.mat,normal,2,normal_2,0,250,True,40960.0,1654784,40.4,11,9,True
+3,Desir_II_configuration_4_faulty_1.mat,data\audio\dgen380\Desir_II_configuration_4_faulty_1.mat,faulty,4,faulty_1,1,249,True,40960.0,1654784,40.4,11,9,True
+4,Desir_II_configuration_4_faulty_2.mat,data\audio\dgen380\Desir_II_configuration_4_faulty_2.mat,faulty,4,faulty_2,1,250,True,40960.0,1654784,40.4,11,9,True

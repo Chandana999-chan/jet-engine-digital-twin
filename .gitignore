@@ -1,0 +1,31 @@
+﻿.venv/
+.venv311/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+.vscode/
+.DS_Store
+
+# Large raw acoustic recordings
+data/audio/dgen380/*.mat
+
+# Python environments and caches
+.venv/
+.venv311/
+__pycache__/
+*.py[cod]
+
+# Frontend dependencies
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
