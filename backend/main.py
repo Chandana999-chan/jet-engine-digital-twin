@@ -6,6 +6,7 @@ import sys
 from functools import lru_cache
 from pathlib import Path
 from typing import Optional
+from backend import simulation_manager
 
 import numpy as np
 import pandas as pd
@@ -71,6 +72,19 @@ class FusionAnalyzeRequest(BaseModel):
     cycle: Optional[int] = Field(None, ge=1)
     audio_sample_id: Optional[str] = Field(None, description="Optional DGEN sample filename or index")
     microphone_channel: str = Field("mic1")
+
+class SimulationSpeedRequest(BaseModel):
+    speed: float = Field(..., ge=0.25, le=5.0)
+
+
+class SimulationCycleRequest(BaseModel):
+    cycle: int = Field(..., ge=1)
+
+
+class SimulationScenarioRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=100)
+    overrides: dict[str, float] = Field(default_factory=dict)
+    shutdown: bool = False
 
 
 def json_safe(value):
@@ -607,3 +621,79 @@ def model_metrics():
             "raw_feature_fusion": False,
         },
     })
+
+
+# ---------------- SIMULATION API ----------------
+
+@app.get("/simulation/{engine_id}/info")
+def simulation_info(engine_id: int):
+    return simulation_manager.get_info(engine_id)
+
+
+@app.get("/simulation/{engine_id}/state")
+def simulation_state(engine_id: int):
+    return simulation_manager.get_state(engine_id)
+
+
+@app.post("/simulation/{engine_id}/start")
+def simulation_start(
+    engine_id: int,
+    request: Optional[SimulationSpeedRequest] = None,
+):
+    speed = request.speed if request else None
+    return simulation_manager.start(engine_id, speed)
+
+
+@app.post("/simulation/{engine_id}/pause")
+def simulation_pause(engine_id: int):
+    return simulation_manager.pause(engine_id)
+
+
+@app.post("/simulation/{engine_id}/resume")
+def simulation_resume(engine_id: int):
+    return simulation_manager.resume(engine_id)
+
+
+@app.post("/simulation/{engine_id}/reset")
+def simulation_reset(engine_id: int):
+    return simulation_manager.reset(engine_id)
+
+
+@app.post("/simulation/{engine_id}/cycle")
+def simulation_cycle(
+    engine_id: int,
+    request: SimulationCycleRequest,
+):
+    return simulation_manager.set_cycle(
+        engine_id,
+        request.cycle,
+    )
+
+
+@app.post("/simulation/{engine_id}/speed")
+def simulation_speed(
+    engine_id: int,
+    request: SimulationSpeedRequest,
+):
+    return simulation_manager.set_speed(
+        engine_id,
+        request.speed,
+    )
+
+
+@app.post("/simulation/{engine_id}/scenario")
+def simulation_scenario(
+    engine_id: int,
+    request: SimulationScenarioRequest,
+):
+    return simulation_manager.apply_scenario(
+        engine_id,
+        request.name,
+        request.overrides,
+        request.shutdown,
+    )
+
+
+@app.delete("/simulation/{engine_id}/scenario")
+def simulation_clear_scenario(engine_id: int):
+    return simulation_manager.clear_scenario(engine_id)

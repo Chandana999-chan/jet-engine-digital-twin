@@ -10,12 +10,14 @@ import {
   Wrench,
   Settings,
   Plane,
+  PlayCircle,
 } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", path: "/", icon: LayoutDashboard },
   { name: "Live Monitoring", path: "/live", icon: Activity },
   { name: "Digital Twin", path: "/digital-twin", icon: Box },
+  { name: "Simulation", path: "/simulation", icon: PlayCircle },
   { name: "Analytics", path: "/analytics", icon: BarChart3 },
   { name: "Acoustic Analysis", path: "/acoustic", icon: AudioWaveform },
   { name: "Explainable AI", path: "/xai", icon: BrainCircuit },

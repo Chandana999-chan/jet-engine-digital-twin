@@ -9,7 +9,9 @@ import Analytics from "./pages/Analytics";
 import AcousticAnalysis from "./pages/AcousticAnalysis";
 import ExplainableAI from "./pages/ExplainableAI";
 import Maintenance from "./pages/Maintenance";
+import Simulation from "./pages/Simulation";
 import Settings from "./pages/Settings";
+
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
         <Route path="acoustic" element={<AcousticAnalysis />} />
         <Route path="xai" element={<ExplainableAI />} />
         <Route path="maintenance" element={<Maintenance />} />
+        <Route path="simulation" element={<Simulation />} />
         <Route path="settings" element={<Settings />} />
+        
       </Route>
     </Routes>
   );
